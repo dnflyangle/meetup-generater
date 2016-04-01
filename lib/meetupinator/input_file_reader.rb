@@ -1,3 +1,4 @@
+require 'yaml'
 module Meetupinator
   # class doco
   class InputFileReader
@@ -7,6 +8,10 @@ module Meetupinator
         file.each_line { |line| group_names << line.strip }
       end
       group_names
+    end
+
+    def self.interal_events(file_name)
+      events = YAML.load_file(file_name)
     end
   end
 end

@@ -1,0 +1,11 @@
+---
+-
+  group_name: ThoughtWorks
+  event_name: Software shokunin community
+  day_of_week: Thursday
+  start_date: 7/04/2016
+  start_time: 6:00 PM
+  end_time: 9:00 PM
+  event_url: http://thoughtworks.com
+  repeat: weekly
+  end_date: 7/05/2016
