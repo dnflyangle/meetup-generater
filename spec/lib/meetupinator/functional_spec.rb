@@ -60,20 +60,23 @@ describe 'meetupinator' do
   end
 
   before do
-    clean_up input_file
+    Dir.chdir('..')
+    FileUtils.rm_rf('test')
     clean_up output_file
     create_input_file
   end
 
   after do
-    clean_up input_file
+    Dir.chdir('..')
+    FileUtils.rm_rf('test')
     clean_up output_file
   end
 
   context 'when given minimal correct arguments' do
     it 'will fetch and save events for all meetups' do
       VCR.use_cassette('getevents_functional_test') do
-        args = ['getevents', '-i', input_file, '-o', output_file, '-k', '1234']
+        puts input_file
+        args = ['getevents', '-i', Dir.pwd, '-o', output_file, '-k', '1234']
         expect { Meetupinator::CLI.start(args) }.to match_stdout("Output written to #{output_file}")
         expect(read_output_file).to eq(expected_csv_output)
       end
@@ -100,6 +103,8 @@ describe 'meetupinator' do
 
   def create_input_file
     group_names = ['MelbNodeJS', 'Ruby-On-Rails-Oceania-Melbourne']
+    FileUtils.mkdir_p('test')
+    Dir.chdir('test')
     File.open(input_file, 'wb') do |file|
       group_names.each { |name| file << name + "\n" }
     end

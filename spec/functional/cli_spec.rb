@@ -32,7 +32,7 @@ describe 'The meetupinator command line interface' do
   context 'meetup api and input file specified' do
     it 'generates the correct output.csv in the working dir' do
       VCR.use_cassette('functional') do
-        Meetupinator::CLI.start(['-i', 'input.txt', '-k', '1234'])
+        Meetupinator::CLI.start(['-i', Dir.pwd, '-k', '1234'])
       end
       expect(CSV.read('output.csv')).to eq(CSV.read('../spec/fixtures/retrieveOutput.csv'))
     end
@@ -41,7 +41,7 @@ describe 'The meetupinator command line interface' do
   context 'meetup api and input file and output file specified' do
     it 'generates the correct output in the specified location' do
       VCR.use_cassette('functional') do
-        Meetupinator::CLI.start(['-i', 'input.txt', '-o', 'outputDir/mySpecialOutput.csv', '-k', '1234'])
+        Meetupinator::CLI.start(['-i', Dir.pwd, '-o', 'outputDir/mySpecialOutput.csv', '-k', '1234'])
       end
       expect(CSV.read('outputDir/mySpecialOutput.csv')).to eq(CSV.read('../spec/fixtures/retrieveOutput.csv'))
     end

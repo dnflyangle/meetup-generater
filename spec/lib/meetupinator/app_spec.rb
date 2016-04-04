@@ -7,14 +7,15 @@ describe Meetupinator::App do
     let(:event_finder) { instance_double(Meetupinator::EventFinder) }
     let(:file_writer) { instance_double(Meetupinator::EventListFileWriter) }
     let(:meetup_api) { instance_double(Meetupinator::MeetupAPI) }
-    let(:input_file) { 'input.txt' }
+    let(:input_file_dir) { '/tmp/input/file/location' }
+    let(:file_name) { input_file_dir + '/input_file.txt' }
     let(:output_file) { 'output.csv' }
     let(:group_names) { ['First meetup group', 'Second meetup group'] }
     let(:events) { double('events') }
     let(:args) do
       {
         meetup_api_key: 1234,
-        input: input_file,
+        input: input_file_dir,
         output: output_file,
         weeks: 1
       }
@@ -22,13 +23,18 @@ describe Meetupinator::App do
 
     context 'when input file, output file, api key and number of weeks are specified' do
       it 'executes the program' do
+        FileUtils.mkdir_p(input_file_dir)
+        File.new(file_name, 'w')
+
         expect(Meetupinator::EventFinder).to receive(:new).and_return(event_finder)
         expect(Meetupinator::EventListFileWriter).to receive(:new).and_return(file_writer)
         expect(Meetupinator::MeetupAPI).to receive(:new).and_return(meetup_api)
-        expect(Meetupinator::InputFileReader).to receive(:group_names).with(input_file).and_return(group_names)
+        expect(Meetupinator::InputFileReader).to receive(:group_names).with(file_name).and_return(group_names)
         expect(event_finder).to receive(:extract_events).with(group_names, meetup_api, 1).and_return(events)
         expect(file_writer).to receive(:write).with(events, output_file)
         Meetupinator::App.retrieve_events(args)
+
+        FileUtils.rm_rf(input_file_dir)
       end
     end
   end

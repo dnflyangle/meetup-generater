@@ -21,9 +21,21 @@ module Meetupinator
 
     def init_retrieve(args)
       @api = Meetupinator::MeetupAPI.new(args[:meetup_api_key])
-      @group_names = Meetupinator::InputFileReader.group_names args[:input]
+      get_group_names(args)
       @event_finder = Meetupinator::EventFinder.new
       @event_list_file_writer = Meetupinator::EventListFileWriter.new
+    end
+
+    def get_groups_filename(args)
+      Dir[File.join(args[:input], '**', '*')]
+        .reject { |p| File.directory? p }
+        .keep_if { |f| f.end_with?('.txt') }
+        .first
+    end
+
+    def get_group_names(args)
+      groups_filename = get_groups_filename(args)
+      @group_names = Meetupinator::InputFileReader.group_names groups_filename
     end
 
     def format(args)

@@ -11,7 +11,7 @@ module Meetupinator
     end
 
     def self.interal_events(file_name)
-      events = YAML.load_file(file_name)
+      YAML.load_file(file_name)
     end
   end
 end

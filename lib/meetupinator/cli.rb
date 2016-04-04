@@ -17,7 +17,7 @@ module Meetupinator
                        groups specified in INPUT to OUTPUT'
     map 'getevents' => 'retrieve_events'
     method_option :input, aliases: '-i', required: true, type: :string,
-                          desc: 'The location of the input file.'
+                          desc: 'The location of the input folder.'
     method_option :output,
                   aliases: '-o', required: false, type: :string,
                   default: 'output.csv',
