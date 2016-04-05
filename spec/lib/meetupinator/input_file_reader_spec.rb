@@ -9,7 +9,7 @@ describe Meetupinator::InputFileReader do
   let(:file_name) { input_file_dir + '/input_file.txt' }
   let(:group_names) { %w(some_group another_group more_groups) }
 
-  let(:yml_file_name) { 'input.yml' }
+  let(:yml_file_name) { input_file_dir + '/input.yml' }
   let(:yml_input) do
     "---
       -
@@ -57,7 +57,7 @@ describe Meetupinator::InputFileReader do
       end
     end
 
-    it { expect(Meetupinator::InputFileReader.group_names(file_name)).to eq(group_names) }
+    it { expect(subject.get_group_names(input_file_dir)).to eq(group_names) }
   end
 
   describe '#interal_events' do
@@ -65,6 +65,6 @@ describe Meetupinator::InputFileReader do
       File.write(yml_file_name, yml_input)
     end
 
-    it { expect(Meetupinator::InputFileReader.interal_events(yml_file_name)).to eq(expected_output) }
+    it { expect(subject.get_interal_events(input_file_dir).first).to eq(expected_output) }
   end
 end

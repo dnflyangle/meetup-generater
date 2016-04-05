@@ -15,27 +15,16 @@ module Meetupinator
 
     def retrieve_events(args)
       init_retrieve(args)
-      events = @event_finder.extract_events(@group_names, @api, args[:weeks])
+      group_names = @input_file_reader.get_group_names args[:input]
+      events = @event_finder.extract_events(group_names, @api, args[:weeks])
       @event_list_file_writer.write events, args[:output]
     end
 
     def init_retrieve(args)
       @api = Meetupinator::MeetupAPI.new(args[:meetup_api_key])
-      get_group_names(args)
+      @input_file_reader = Meetupinator::InputFileReader.new
       @event_finder = Meetupinator::EventFinder.new
       @event_list_file_writer = Meetupinator::EventListFileWriter.new
-    end
-
-    def get_groups_filename(args)
-      Dir[File.join(args[:input], '**', '*')]
-        .reject { |p| File.directory? p }
-        .keep_if { |f| f.end_with?('.txt') }
-        .first
-    end
-
-    def get_group_names(args)
-      groups_filename = get_groups_filename(args)
-      @group_names = Meetupinator::InputFileReader.group_names groups_filename
     end
 
     def format(args)
