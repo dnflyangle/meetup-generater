@@ -14,7 +14,7 @@ module Meetupinator
     def get_interal_events(args)
       events = []
       get_internal_events_filename(args).each do |file|
-        event = YAML.load_file(file)
+        event = YAML.load_file(file).first
         events << event
       end
       events

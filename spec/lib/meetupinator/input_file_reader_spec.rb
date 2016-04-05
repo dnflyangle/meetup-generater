@@ -65,6 +65,6 @@ describe Meetupinator::InputFileReader do
       File.write(yml_file_name, yml_input)
     end
 
-    it { expect(subject.get_interal_events(input_file_dir).first).to eq(expected_output) }
+    it { expect(subject.get_interal_events(input_file_dir)).to eq(expected_output) }
   end
 end
