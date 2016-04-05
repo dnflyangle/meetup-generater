@@ -20,6 +20,8 @@ module Meetupinator
       events
     end
 
+    private
+
     def get_all_files(args)
       Dir[File.join(args, '**', '*')]
         .reject { |p| File.directory? p }
