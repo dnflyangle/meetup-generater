@@ -32,8 +32,10 @@ describe Meetupinator::App do
         expect(Meetupinator::MeetupAPI).to receive(:new).and_return(meetup_api)
         expect(Meetupinator::InputFileReader).to receive(:new).and_return(input_file_reader)
         expect(input_file_reader).to receive(:get_group_names).with(input_file_dir).and_return(group_names)
+        expect(input_file_reader).to receive(:get_interal_events).with(input_file_dir).and_return(events)
         expect(event_finder).to receive(:extract_events).with(group_names, meetup_api, 1).and_return(events)
         expect(file_writer).to receive(:write).with(events, output_file)
+        expect(file_writer).to receive(:write_internal_events).with(events, output_file)
         Meetupinator::App.retrieve_events(args)
 
         FileUtils.rm_rf(input_file_dir)

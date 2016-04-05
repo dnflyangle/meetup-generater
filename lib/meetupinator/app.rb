@@ -15,9 +15,19 @@ module Meetupinator
 
     def retrieve_events(args)
       init_retrieve(args)
+      retrieve_meetup_events(args)
+      retrieve_internal_events(args)
+    end
+
+    def retrieve_meetup_events(args)
       group_names = @input_file_reader.get_group_names args[:input]
       events = @event_finder.extract_events(group_names, @api, args[:weeks])
       @event_list_file_writer.write events, args[:output]
+    end
+
+    def retrieve_internal_events(args)
+      events = @input_file_reader.get_interal_events args[:input]
+      @event_list_file_writer.write_internal_events events, args[:output]
     end
 
     def init_retrieve(args)
