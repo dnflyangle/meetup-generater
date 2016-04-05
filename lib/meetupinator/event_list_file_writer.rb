@@ -15,7 +15,23 @@ module Meetupinator
       end
     end
 
+    def write_internal_events(events, file_name)
+      CSV.open(file_name, 'ab') do |csv|
+        events.each do |event|
+          csv << format_event(event)
+        end
+      end
+    end
+
     private
+
+    def format_event(event)
+      %w(
+        group_name event_name day_of_week
+        start_date start_time end_time
+        event_url
+      ).map { |k| event[k] }
+    end
 
     def extract_row(event)
       start_time, end_time = extract_times event
