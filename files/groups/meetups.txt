@@ -1,3 +1,4 @@
+fsharpsydney
 Sydney-Alt-Net
 Sydney-Microservices
 future-mobile-apps
@@ -41,3 +42,8 @@ coding-dojo-sydney
 Deep-Learning-Sydney
 Sydney-Apidays
 Sydney-Agile-Business-Analysts-Product-Owners
+React-Native-Sydney
+sydneycocoaheads
+Interaction-Design-Foundation-Sydney
+All-Things-API-REST-Cloud-Integrations-SaaS-Sydney-AU
+Internet-of-Things-Sydney
