@@ -1,3 +1,4 @@
+Sydney-Design-Thinking-Meetup
 fsharpsydney
 Sydney-Alt-Net
 Sydney-Microservices
@@ -15,7 +16,7 @@ PMISydneyMeetup
 Sydney-Agile-Coach-Meetup
 devops-sydney
 Azure-Sydney-User-Group
-All-Things-API
+All-Things-API-REST-Cloud-Integrations-SaaS-Sydney-AU
 AWS-Sydney
 Disruptors-in-Tech
 Sydney-Docker-User-Group
