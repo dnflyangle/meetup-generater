@@ -44,8 +44,11 @@ Deep-Learning-Sydney
 Sydney-Apidays
 Sydney-Agile-Business-Analysts-Product-Owners
 React-Native-Sydney
+React-Sydney
 sydneycocoaheads
 Interaction-Design-Foundation-Sydney
 All-Things-API-REST-Cloud-Integrations-SaaS-Sydney-AU
 Internet-of-Things-Sydney
 NASA-Open-Innovation-Initiative-Sydney
+Sydney-Game-Engine-Developers
+Sydney-Elm-Meetup

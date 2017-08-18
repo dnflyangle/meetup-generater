@@ -26,5 +26,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop', '~> 0.29'
   s.add_development_dependency 'guard', '~> 2.12'
   s.add_development_dependency 'rake', '~> 10.4'
+  s.add_development_dependency 'google-api-client', '~> 0.9'
   s.add_runtime_dependency 'thor', '~> 0.19'
 end

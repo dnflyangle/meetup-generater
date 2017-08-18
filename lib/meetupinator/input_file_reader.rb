@@ -3,7 +3,7 @@ module Meetupinator
   # class doco
   class InputFileReader
     def get_group_names(args)
-      file_name = get_groups_filename(args)
+      file_name = "files/groups/meetups.txt"
       group_names = []
       File.open(file_name, 'rb') do |file|
         file.each_line { |line| group_names << line.strip }

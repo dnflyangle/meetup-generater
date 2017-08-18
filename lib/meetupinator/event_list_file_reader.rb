@@ -4,7 +4,7 @@ module Meetupinator
   # Reads a list of events from a CSV file.
   class EventListFileReader
     def read(file_name)
-      File.open file_name do |body|
+      File.open "output.csv" do |body|
         csv = CSV.new(body,
                       headers: true,
                       header_converters: :symbol,
